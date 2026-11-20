@@ -14,17 +14,18 @@ spec:
       labels:
         app: auth-service
     spec:
+      imagePullSecrets:
+        - name: harbor-secret
       containers:
-      - imagePullSecrets:
-        name: harbor-secret
-      - name: auth-service
-        image: 13.200.210.3:443/backend/auth-service:1.0
-        ports:
-        - containerPort: 5001
-      - configMapRef:
-        name: auth-config
-      - secretRef:
-        name: auth-secret   
+        - name: auth-service
+          image: 13.200.210.3:443/backend/auth-service:1.0
+          ports:
+            - containerPort: 5001
+          envFrom:
+            - configMapRef:
+                name: auth-config
+            - secretRef:
+                name: auth-secret   
 
 ---
 
@@ -44,15 +45,16 @@ spec:
       labels:
         app: order-service
     spec:
+      imagePullSecrets:
+        - name: harbor-secret
       containers:
-      - imagePullSecrets:
-        name: harbor-secret
-      - name: order-service
-        image: 13.200.210.3:443/backend/order-service:1.0
-        ports:
-        - containerPort: 5002
-      - configMapRef:
-        name: order-config  
+        - name: order-service
+          image: 13.200.210.3:443/backend/order-service:1.0
+          ports:
+            - containerPort: 5002
+          envFrom:  
+            - configMapRef:
+                name: order-config  
 ---
 
 apiVersion: apps/v1
@@ -71,15 +73,16 @@ spec:
       labels:
         app: product-service
     spec:
+      imagePullSecrets:
+        - name: harbor-secret
       containers:
-      - imagePullSecrets:
-        name: harbor-secret
-      - name: product-service
-        image: 13.200.210.3:443/backend/product-service:1.0
-        ports:
-        - containerPort: 5003
-      - configMapRef:
-        name: product-config 
+        - name: product-service
+          image: 13.200.210.3:443/backend/product-service:1.0
+          ports:
+            - containerPort: 5003
+          envFrom:  
+            - configMapRef:
+                name: product-config 
          
 ---
 
