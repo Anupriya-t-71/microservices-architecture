@@ -21,6 +21,12 @@ spec:
           image: 13.200.210.3:443/backend/auth-service:1.0
           ports:
             - containerPort: 5001
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 5001
+            initialDelaySeconds: 5
+            periodSeconds: 10
           envFrom:
             - configMapRef:
                 name: auth-config
