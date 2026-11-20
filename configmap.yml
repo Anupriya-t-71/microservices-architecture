@@ -3,8 +3,8 @@ kind: ConfigMap
 metadata:
   name: auth-config
 data:
-  PORT: 5001
-  MONGO_URI: mongodb://mongo:27017/authdb
+  PORT: "5001"
+  MONGO_URI: "mongodb://mongo:27017/authdb"
 
 ---
  
@@ -13,14 +13,14 @@ kind: ConfigMap
 metadata:
   name: order-config
 data:
-  PORT: 5002
-  MONGO_URI: mongodb://mongo:27017/orderdb
+  PORT: "5002"
+  MONGO_URI: "mongodb://mongo:27017/orderdb"
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
   name: product-config
 data:
-  PORT: 5003
-  MONGO_URI: mongodb://mongo:27017/productdb  
+  PORT: "5003"
+  MONGO_URI: "mongodb://mongo:27017/productdb"  
    
