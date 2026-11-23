@@ -1,31 +1,39 @@
-- services:
+services:
     
-    - mongodb:
-        image: mongo:4.4
-        container_name: mongodb
-        env:
-        PORT: 27017
+  mongodb:
+    image: mongo:4.4
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    environment:
+    PORT: 27017
 
-    - auth-service:
-        image: auth-service
-        container_name: auth-service
-        env:
-        PORT: 5001
-        MONGO_URI: mongodb://mongo:27017/authdb
-        JWT_SECRET: secret
-        JWT_EXPIRES_IN: 1d
+  auth-service:
+    image: auth-service
+    container_name: auth-service
+    ports:
+      - "5001:5001"
+    environment:
+    PORT: 5001
+    MONGO_URI: mongodb://mongo:27017/authdb
+    JWT_SECRET: secret
+    JWT_EXPIRES_IN: 1d
 
-    - order-service:
-        image: order-service
-        container_name: order-service
-        env:
-        PORT: 5003
-        MONGO_URI: mongodb://mongo:27017/orderdb
+  order-service:
+    image: order-service
+    container_name: order-service
+    ports:
+      - "5003:5003"
+    environment:
+    PORT: 5003
+    MONGO_URI: mongodb://mongo:27017/orderdb
 
-    - product-service:
-        image: product-service
-        container_name: product-service
-        env:
-        PORT: 5002
-        MONGO_URI: mongodb://mongo:27017/productdb        
+  product-service:
+    image: product-service
+    container_name: product-service
+    ports:
+      - "5002:5002"
+    environment:
+    PORT: 5002
+    MONGO_URI: mongodb://mongo:27017/productdb        
                 
